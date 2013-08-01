@@ -24,12 +24,16 @@
     // Show a custom alertDismissed
     //
     function showAlert() {
-        navigator.notification.alert(
-            'You are the winner!',  // message
-            alertDismissed,         // callback
-            'Game Over',            // title
-            'Done'                  // buttonName
-        );
+        if (navigator.notification) {
+	         navigator.notification.alert(
+	            'You are the winner!',  // message
+	            alertDismissed,         // callback
+	            'Game Over',            // title
+	            'Done'                  // buttonName
+	        );       
+        } else {
+	        alert(title ? (title + ": " + message + " but not Device") : message);
+	    }
     }
 
     </script>
