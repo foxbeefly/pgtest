@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Contact Example</title>
+    <title>Notification Example</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
     <script type="text/javascript" charset="utf-8">
-	alert("doing shit");
-	console.log("doing shit");
+
     // Wait for device API libraries to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -14,38 +13,28 @@
     // device APIs are available
     //
     function onDeviceReady() {
-        alert("onDeviceReady");
-        console.log("onDeviceReady");
-        var options = new ContactFindOptions();
-        options.filter="";
-        filter = ["displayName","organizations"];
-        navigator.contacts.find(filter, onSuccess, onError, options);
+        // Empty
     }
 
-    // onSuccess: Get a snapshot of the current contacts
-    //
-    function onSuccess(contacts) {
-        for (var i = 0; i < contacts.length; i++) {
-            for (var j = 0; j < contacts[i].organizations.length; j++) {
-                alert("Pref: "     + contacts[i].organizations[j].pref       + "\n" +
-                    "Type: "       + contacts[i].organizations[j].type       + "\n" +
-                    "Name: "       + contacts[i].organizations[j].name       + "\n" +
-                    "Department: " + contacts[i].organizations[j].department + "\n" +
-                    "Title: "      + contacts[i].organizations[j].title);
-            }
+    // alert dialog dismissed
+        function alertDismissed() {
+            // do something
         }
-    };
 
-    // onError: Failed to get the contacts
+    // Show a custom alertDismissed
     //
-    function onError(contactError) {
-        alert('onError!');
+    function showAlert() {
+        navigator.notification.alert(
+            'You are the winner!',  // message
+            alertDismissed,         // callback
+            'Game Over',            // title
+            'Done'                  // buttonName
+        );
     }
 
     </script>
   </head>
   <body>
-    <h1>Example</h1>
-    <p>Find Contacts</p>
+    <p><a href="#" onclick="showAlert(); return false;">Show Alert</a></p>
   </body>
 </html>
