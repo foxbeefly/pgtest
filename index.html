@@ -5,7 +5,29 @@
 
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" charset="utf-8">
-
+	var isMobile = {
+	    Android: function() {
+	        return navigator.userAgent.match(/Android/i);
+	    },
+	    BlackBerry: function() {
+	        return navigator.userAgent.match(/BlackBerry/i);
+	    },
+	    iOS: function() {
+	        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+	    },
+	    Opera: function() {
+	        return navigator.userAgent.match(/Opera Mini/i);
+	    },
+	    Windows: function() {
+	        return navigator.userAgent.match(/IEMobile/i);
+	    },
+	    any: function() {
+	        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+	    }
+	};
+	if(isMobile.any()) {
+	   //some code...
+	}	
     // Wait for device API libraries to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -23,8 +45,8 @@
 
     // Show a custom alertDismissed
     //
-    function showAlert() {
-        if (navigator.notification) {
+    function showAlert( message, title ) {
+        if (isMobile.any()) {
 	         navigator.notification.alert(
 	            'You are the winner!',  // message
 	            alertDismissed,         // callback
@@ -32,7 +54,7 @@
 	            'Done'                  // buttonName
 	        );       
         } else {
-	        alert(title ? (title + ": " + message + " but not Device") : message);
+	         alert("Clicked but not Device");
 	    }
     }
 
