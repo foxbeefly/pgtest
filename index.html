@@ -32,12 +32,31 @@
     //
     document.addEventListener("deviceready", onDeviceReady, false);
     
-    document.addEventListener("menubutton", onMenuKeyDown, false);
+    // make the device buzz
+    //
+    function buzzDevice() {
+        if (isMobile.any()) {
+	         navigator.notification.vibrate(2500);
+        } else {
+	         alert("No buzz unless Device");
+	    }
+    }
+
+    // menu button
+    //
+    function onMenuKeyDown() {
+        if (isMobile.any()) {
+	         navigator.notification.vibrate(2500);
+        } else {
+	         alert("Menu button");
+	    }
+    }      
 
     // device APIs are available
     //
     function onDeviceReady() {
-        // Empty
+        buzzDevice();
+        document.addEventListener("menubutton", onMenuKeyDown, false);
     }
 
     // alert dialog dismissed
@@ -59,31 +78,7 @@
 	         alert("Clicked but not Device");
 	    }
     }
-    // make the device buzz
-    //
-    function buzzDevice() {
-        if (isMobile.any()) {
-	         navigator.notification.vibrate(2500);
-        } else {
-	         alert("No buzz unless Device");
-	    }
-    }
-
-    // menu button
-    //
-    function onMenuKeyDown() {
-        if (isMobile.any()) {
-	         navigator.notification.vibrate(2500);
-	         navigator.notification.alert(
-	            'You presses the menu button!',  // message
-	            alertDismissed,         // callback
-	            'Success',            // title
-	            'Done'                  // buttonName
-	        );  	         
-        } else {
-	         alert("Menu button");
-	    }
-    }    
+  
     </script>
   </head>
   <body>
