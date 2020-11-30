@@ -3,9 +3,9 @@
 	<head>
 		<title>Notification Example</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0-beta.1/jquery.mobile-1.3.0-beta.1.min.css" />
-		<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-		<script src="http://code.jquery.com/mobile/1.3.0-beta.1/jquery.mobile-1.3.0-beta.1.min.js"></script>	
+		<link rel="stylesheet" href="jquery.mobile-1.3.0-beta.1.min.css" />
+		<script src="jquery-1.8.3.min.js"></script>
+		<script src="jquery.mobile-1.3.0-beta.1.min.js"></script>	
 	    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 	    <script type="text/javascript" charset="utf-8">
 		var isMobile = {
@@ -30,6 +30,7 @@
 		};
 		if(isMobile.any()) {
 		   //some code...
+		   alert("isMobile.any()");
 		}	
 	    // Wait for device API libraries to load
 	    //
@@ -94,15 +95,16 @@
 		<div data-role="page" id="indexPage">
 			<div data-role="header">
 				<h1>PhoneGap Test</h1>
-				<a href="index-dialog.html" data-rel="dialog" data-icon="info" data-iconpos="notext" class="ui-btn-right" data-transition="flip">About</a>
+				<a href="#about" data-rel="dialog" data-icon="info" data-iconpos="notext" class="ui-btn-right" data-transition="pop">About</a>
 			</div>
 			<div data-role="navbar">
 				<ul>
-					<li><a href="#calendarPage" class="ui-btn-active ui-state-persist">Calendar</a></li>
+					<li><a href="#calendarPage">Calendar</a></li>
 					<li><a href="#resultsPage">Results</a></li>
 				</ul>
 			</div><!-- /navbar -->
 			<div data-role="content">	
+				<p>Content here...</p>
 				<p><a href="#" onclick="showAlert(); return false;">Show Alert</a></p>
 				<p><a href="#" onclick="buzzDevice(); return false;">Buzz</a></p>
 			</div>
@@ -110,5 +112,15 @@
 				<h4>// stylus //</h4>
 			</div>			
 		</div>
+		<div data-role="page" id="calendarPage">
+			<div data-role="content">	
+				<p>Content here...</p>
+			</div>		
+		</div>
+		<div data-role="page" id="resultsPage">
+			<div data-role="content">	
+				<p>Content here...</p>
+			</div>			
+		</div>		
 	</body>
 </html>
